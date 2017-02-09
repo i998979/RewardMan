@@ -1,0 +1,8 @@
+main: to.epac.factorycraft.RewardMan.Main
+version: 1.0.0
+name: RewardMan
+
+commands:
+  rewardman:
+    aliases: [rwm]
+    description: Main command

@@ -1,0 +1,565 @@
+options:
+    #Name of the RewardMan, the name above NPC is always visible
+    RWM.NPC.name: "&6Reward &eMan"
+    #Skin of the NPC, default is Hyp*xel's Delivery Man
+    RWM.NPC.skin: "Zealock"
+    
+    #The hologram that will shows above NPC, use ; to start a new line
+    RWM.holo: "&eClaim your rewards here;&c&lRIGHT CLICK"
+    
+    #If you have Lobby Preferences and it is renamed, please remember to change the file name here
+    #Otherwise, Stacker will affect the RewardMan
+    #Require WildSkript
+    RWM.File.LP: "plugins/Skript/scripts/Lobby_Preferences.sk"
+    RWM.Stacker.LP: "&9[&6Reward &eMan&9] &eLobby Preferences found, setting variables to prevent RewardMan being stacked."
+    
+    #====================#
+    #====================#
+    #Economy Reward
+    #====================#
+    #====================#
+    #Daily Economy Reward
+    RWM.Daily.Default: 50
+    RWM.Daily.VIP: 100
+    RWM.Daily.MVP: 250
+    RWM.Daily.MVP+: 500
+    #Monthly Economy Reward
+    RWM.Monthly.Default: 500
+    RWM.Monthly.VIP: 1000
+    RWM.Monthly.MVP: 2500
+    RWM.Monthly.MVP+: 5000
+    #Vote Reward
+    RWM.voted.reward: 500
+    
+    #====================#
+    #====================#
+    #GUI items
+    #====================#
+    #====================#
+    #item of the frame and the name
+    RWM.frame: gray glass pane
+    RWM.frame.name: ""
+    #Daily Reward column
+    RWM.Title.Daily.item: iron block 
+    RWM.Title.Daily: "&7Daily Reward"
+    #Monthly Reward column
+    RWM.Title.Monthly.item: gold block
+    RWM.Title.Monthly: "&6Monthly Reward"
+    #Vote column
+    RWM.Title.Vote.item: red flower
+    RWM.Title.Vote: "&cVote Link"
+    
+    #Daily and Monthly will use the same item, but Monthly's one will be shiny
+    RWM.Default.item: dye:9
+    RWM.VIP.item: glowstone dust
+    RWM.MVP.item: emerald
+    RWM.MVP+.item: nether star
+    RWM.claimed.item: ender pearl
+    #Daily
+    RWM.Daily.VIP.name: "&aVIP Rank Daily Reward"
+    RWM.Daily.Default.name: "&fDefault Rank Daily Reward"
+    RWM.Daily.MVP.name: "&9MVP Rank Daily Reward"
+    RWM.Daily.MVP+.name: "&bMVP+ Rank Daily Reward"
+    #Monthly
+    RWM.Monthly.Default.name: "&fDefault Rank Monthly Reward"
+    RWM.Monthly.VIP.name: "&aVIP Rank Monthly Reward"
+    RWM.Monthly.MVP.name: "&9MVP Rank Monthly Reward"
+    RWM.Monthly.MVP+.name: "&bMVP+ Rank Monthly Reward"
+    
+    #Vote item material and name
+    RWM.Vote.A: "&6Vote Website 1"
+    RWM.Vote.A.item: empty map
+    RWM.Vote.B: "&6Vote Website 2"
+    RWM.Vote.B.item: paper
+    RWM.Vote.C: "&6Vote Website 3"
+    RWM.Vote.C.item: book
+    RWM.Vote.D: "&6Vote Website 4"
+    RWM.Vote.D.item: book and quill
+    
+    #Link of the vote
+    RWM.Vote.A.link: "&7http://minecraftservers.org/vote/326284"
+    RWM.Vote.B.link: "&7http://topg.org/Minecraft/in-425501"
+    RWM.Vote.C.link: "&7http://example.website.C.com"
+    RWM.Vote.D.link: "&7http://example.website.D.com"
+    
+    #====================#
+    #====================#
+    #Permission
+    #====================#
+    #====================#
+    RWM.VIP: "RewardMan.VIP"
+    RWM.MVP: "RewardMan.MVP"
+    RWM.MVP+: "RewardMan.MVP+"
+    
+    #====================#
+    #====================#
+    #Messages
+    #====================#
+    #====================#
+    #just a placeholder to prevent it shows <none>
+    RWM.comebacklater: &7come back later.
+    RWM.rewardmsg: &7Economy Reward: $
+    #Daily Reward countdown
+    RWM.comebackin.Daily: &7come back in %{_lore.d}%
+    #{_d.d}: hour
+    #{_m.d}: minute
+    #{_s.d}: second
+    RWM.countdown.Daily: "%{_h.d}%h %{_m.d}%m %{_s.d}%&7s"
+    #Monthly Reward countdown
+    RWM.comebackin.Monthly: &7come back in %{_lore.m}%
+    #{_h.m}: day
+    #{_d.m}: hour
+    #{_m.m}: minute
+    #{_s.m}: second
+    RWM.countdown.Monthly: "%{_d.m}%d %{_h.m}%h %{_m.m}%m %{_s.m}%&7s"
+    
+    #Initialize
+    RWM.Init: "&9[&6Reward &eMan&9] &eSystem initializing, please wait."
+    
+    #Hologram already exists
+    RWM.Holo.Exist: "&9[&6Reward &eMan&9] &eHologram with ID %loop-index% already exist."
+    
+    #List NPC
+    RWM.Listing: "&9[&6Reward &eMan&9] &eListing all RewardMan:"
+    RWM.List: "&9[&6Reward &eMan&9] &e%loop-index%: %{RWM.Holo::%loop-index%}%."
+    
+    #Removed NPC
+    RWM.removed.NPC: "&9[&6Reward &eMan&9] &eYou removed a RewardMan with ID %citizen id of target entity%."
+    RWM.removed.NPC.id: "&9[&6Reward &eMan&9] &eYou removed a RewardMan with ID %arg-2%."
+    RWM.created.NPC: "&9[&6Reward &eMan&9] &eYou created a RewardMan with ID %last created citizen id%."
+    RWM.PlayerDatabase.removed: "&9[&6Reward &eMan&9] &c%arg-2% player's data has been deleted."
+    RWM.AllPlayerDatabase.removed: "&9[&6Reward &eMan&9] &cAll player's data has been deleted."
+    RWM.Database.removed: "&9[&6Reward &eMan&9] &cAll data has been deleted."
+    RWM.remove.TargetNotSet: "&9[&6Reward &eMan&9] &cTarget NPC is not set. Look at the NPC and execute again."
+    
+    #Purchase rank
+    RWM.purchase.VIP: "&9[&6Reward &eMan&9] &ePurchase &aVIP Rank &eat &bfactorycraft.weebly.com." 
+    RWM.purchase.MVP: "&9[&6Reward &eMan&9] &ePurchase &9MVP Rank &eat &bfactorycraft.weebly.com." 
+    RWM.purchase.MVP+: "&9[&6Reward &eMan&9] &ePurchase &bMVP+ Rank &eat &bfactorycraft.weebly.com."
+    
+    #Already claimed
+    RWM.claimed.Daily.Default: "&9[&6Reward &eMan&9] &eYou have claimed &fDefault Rank &eDaily Reward&e. Come back tomorrow."
+    RWM.claimed.Monthly.Default: "&9[&6Reward &eMan&9] &eYou have claimed &fDefault Rank &eMonthly Reward. Come back next month."
+    
+    RWM.claimed.Daily.VIP: "&9[&6Reward &eMan&9] &eYou have claimed &aVIP Rank &eDaily Reward. Come back tomorrow."
+    RWM.claimed.Monthly.VIP: "&9[&6Reward &eMan&9] &eYou have claimed &aVIP Rank &eMonthly Reward. Come back next month."
+    
+    RWM.claimed.Daily.MVP: "&9[&6Reward &eMan&9] &eYou have claimed &9MVP Rank &eDaily Reward. Come back tomorrow."
+    RWM.claimed.Monthly.MVP: "&9[&6Reward &eMan&9] &eYou have claimed &9MVP Rank &eMonthly Reward. Come back next month."
+    
+    RWM.claimed.Daily.MVP+: "&9[&6Reward &eMan&9] &eYou have claimed &bMVP+ Rank &eDaily Reward. Come back tomorrow."
+    RWM.claimed.Monthly.MVP+: "&9[&6Reward &eMan&9] &eYou have claimed &bMVP+ Rank &eMonthly Reward. Come back next month."
+    
+    #If you are admin/ VIP or above, you will unvaliable to claim Default Rank Reward
+    RWM.notDefaultRank: "&9[&6Reward &eMan&9] &eYou are not Default Rank now."
+    
+    #mostly used at the name of the "Claimed" item slot
+    RWM.Daily.claimed: "&7You have claimed this Daily Reward"
+    RWM.Monthly.claimed: "&7You have claimed this Monthly Reward"
+    
+    #Guideline to tell player to click on the website, shows before the website
+    RWM.Vote.message: "&9[&6Reward &eMan&9] &eClick the following website to vote"
+    
+    #After votifier received vote and player will receive these messages
+    RWM.voted.msg: "&9[&6Reward &eMan&9] &eThanks for voting our server at &b%event-string%&e."
+    RWM.voted.msg2: "&9[&6Reward &eMan&9] &eYou received"
+
+    #====================#
+    #====================#
+    #Sounds
+    #====================#
+    #====================#
+    #play when you right click the NPC
+    RWM.sound.open: "CAT_MEOW"
+    RWM.sound.open.pitch: 1
+    RWM.sound.open.vol:1
+    
+    #play when you claimed the reward
+    RWM.claimed.sound: "LEVEL_UP"
+    RWM.claimed.sound.pitch: 1
+    RWM.claimed.sound.vol: 1
+    
+    #play when you voted the server and votifier received it
+    RWM.voted.sound: "LEVEL_UP"
+    RWM.voted.sound.pitch: 1
+    RWM.voted.sound.vol: 1
+    
+    #play when player click on the vote item
+    RWM.voteclick.sound: "CHICKEN_EGG_POP"
+    RWM.voteclick.sound.pitch: 1
+    RWM.voteclick.sound.vol: 1
+    
+    #play when player click on the item that they don't have permission to click
+    RWM.noperm.sound: "IRONGOLEM_HIT"
+    RWM.noperm.sound.pitch: 1
+    RWM.noperm.sound.vol: 1
+    
+    #play when player click on the "already claimed" item
+    RWM.invalid.sound: "ANVIL_LAND"
+    RWM.invalid.sound.pitch: 1
+    RWM.invalid.sound.vol: 1
+
+on script load:
+    message {@RWM.Init} to console
+    if file {@RWM.File.LP} exists:
+        set {_n} to {@RWM.NPC.name}
+        if {Pref.Stacker.%{_n}%} is not true:
+            set {Pref.Stacker.%{_n}%} to true
+            message {@RWM.Stacker.LP} to console
+        
+    loop {RWM.ID::*}:
+        if holo object "RWM_%loop-index%" exists:
+            message {@RWM.Holo.Exist} to console
+        else:
+            create holo object {@RWM.holo} with id "RWM_%loop-index%" at {RWM.Holo::%loop-index%}
+        
+command /rwm [<text>] [<text>]:
+    trigger:
+        if arg-1 is "list":
+            message {@RWM.Listing}
+            loop {RWM.ID::*}:
+                message {@RWM.List}
+        if arg-1 is "create":
+            create a citizen named {@RWM.NPC.name} at location of event-player
+            change citizen last created citizen id skin to {@RWM.NPC.skin}
+            make citizen last created citizen id invulnerable
+            set citizen last created citizen id nametag visible
+            create holo object {@RWM.holo} with id "RWM_%last created citizen id%" at location above location above location above event-player
+            set {RWM.Holo::%last created citizen id%} to location above location above location above event-player
+            set {RWM.ID::%last created citizen id%} to true
+            message {@RWM.created.NPC}
+        if arg-1 is "remove":
+            if arg-2 is set:
+                message {@RWM.removed.NPC.id}
+                delete holo object "RWM_%arg-2%"
+                remove citizen (arg-2 parsed as integer)
+                delete {RWM.ID::%arg-2%}
+                delete {RWM.Holo::%arg-2%}
+            else if target entity is not set:
+                message {@RWM.remove.TargetNotSet}
+            else:
+                message {@RWM.removed.NPC}
+                set {_n} to citizen id of target entity
+                set {_n} to {_n} parsed as integer
+                delete holo object "RWM_%{_n}%"
+                remove citizen {_n}
+                delete {RWM.ID::%{_n}%}
+                delete {RWM.Holo::%{_n}%}
+                
+        if arg-1 is "resetplayer":
+            if arg-2 is set:
+                delete {RWM.Daily.expire::%arg-2%}
+                delete {RWM.Monthly.expire::%arg-2%}
+                message {@RWM.PlayerDatabase.removed}
+            else:
+                delete {RWM.Daily.expire::*}
+                delete {RWM.Monthly.expire::*}
+                message {@RWM.AllPlayerDatabase.removed}
+        if arg-1 is "resetall":
+            delete {RWM.Daily.expire::*}
+            delete {RWM.Monthly.expire::*}
+            loop {RWM.ID::*}:
+                delete holo object "RWM_%loop-value%"
+            delete {RWM.ID::*}
+            delete {RWM.Holo::*}
+            message {@RWM.Database.removed}
+            
+on npc right click:
+    if name of target entity is {@RWM.NPC.name}:
+    
+        #====================#
+        #Preventing Stacker take effect on RewardMan if Lobby Preferences is installed
+        #You can simply ignore this line
+        if file {@RWM.File.LP} exists:
+            set {_n} to {@RWM.NPC.name}
+            if {Pref.Stacker.%{_n}%} is not true:
+                set {Pref.Stacker.%{_n}%} to true
+        #====================#
+        
+        if player's tool is nothing:
+            play {@RWM.sound.open} specifically to player with pitch {@RWM.sound.open.pitch} and volume {@RWM.sound.open.vol}
+            open chest with 6 rows named {@RWM.NPC.name} to player
+            wait 1 tick
+            #====================#
+            #Glass Frame
+            #====================#
+            set slot 0 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 1 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 3 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 5 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 7 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 8 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 9 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 17 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 18 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 26 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 27 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 35 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 36 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 44 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            set slot 45 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+            loop 8 times:
+                set slot loop-number+45 of player's current inventory to {@RWM.frame} named {@RWM.frame.name}
+                
+            #====================#
+            #Reward Title
+            #====================#
+            set slot 2 of player's current inventory to {@RWM.Title.Daily.item} named {@RWM.Title.Daily}
+            set slot 4 of player's current inventory to {@RWM.Title.Monthly.item} named {@RWM.Title.Monthly}
+            set slot 6 of player's current inventory to {@RWM.Title.Vote.item} named {@RWM.Title.Vote}
+            
+            #====================#
+            #Daily Reward
+            #====================#
+            if {RWM.Daily.expire::%event-player%} > unix time:
+                if event-player doesn't have permission {@RWM.VIP} or {@RWM.MVP} or {@RWM.MVP+}:
+                    set slot 11 of player's current inventory to {@RWM.claimed.item} named {@RWM.Daily.claimed} with lore "{@RWM.comebackin.Daily}"
+                else:
+                    set slot 11 of player's current inventory to {@RWM.Default.item} named {@RWM.Daily.Default.name} with lore "&7Economy Reward: ${@RWM.Daily.Default}"
+            else:
+                set slot 11 of player's current inventory to {@RWM.Default.item} named {@RWM.Daily.Default.name} with lore "&7Economy Reward: ${@RWM.Daily.Default}"
+                
+            if {RWM.Daily.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.VIP}:
+                    set slot 20 of player's current inventory to {@RWM.claimed.item} named {@RWM.Daily.claimed} with lore "{@RWM.comebackin.Daily}"
+                else:
+                    set slot 20 of player's current inventory to {@RWM.VIP.item} named {@RWM.Daily.VIP.name} with lore "&7Economy Reward: ${@RWM.Daily.VIP}"
+            else:
+                set slot 20 of player's current inventory to {@RWM.VIP.item} named {@RWM.Daily.VIP.name} with lore "&7Economy Reward: ${@RWM.Daily.VIP}"
+                
+            if {RWM.Daily.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.MVP}:
+                    set slot 29 of player's current inventory to {@RWM.claimed.item} named {@RWM.Daily.claimed} with lore "{@RWM.comebackin.Daily}"
+                else:
+                    set slot 29 of player's current inventory to {@RWM.MVP.item} named {@RWM.Daily.MVP.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP}"
+            else:
+                set slot 29 of player's current inventory to {@RWM.MVP.item} named {@RWM.Daily.MVP.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP}"
+                
+            if {RWM.Daily.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.VIP}:
+                    set slot 38 of player's current inventory to {@RWM.claimed.item} named {@RWM.Daily.claimed} with lore "{@RWM.comebackin.Daily}"
+                else:
+                    set slot 38 of player's current inventory to {@RWM.MVP+.item} named {@RWM.Daily.MVP+.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP+}"
+            else:
+                set slot 38 of player's current inventory to {@RWM.MVP+.item} named {@RWM.Daily.MVP+.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP+}"
+            
+            #====================#
+            #Daily Reward
+            #====================#
+            if {RWM.Monthly.expire::%event-player%} > unix time:
+                if event-player doesn't have permission {@RWM.VIP} or {@RWM.MVP} or {@RWM.MVP+}:
+                    set slot 13 of player's current inventory to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebackin.Monthly}"
+                else:
+                    set slot 13 of player's current inventory to shiny {@RWM.Default.item} named {@RWM.Monthly.Default.name} with lore "&7Economy Reward: ${@RWM.Monthly.Default}"
+            else:
+                set slot 13 of player's current inventory to shiny {@RWM.Default.item} named {@RWM.Monthly.Default.name} with lore "&7Economy Reward: ${@RWM.Monthly.Default}"
+                
+            if {RWM.Monthly.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.VIP}:
+                    set slot 22 of player's current inventory to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebackin.Monthly}"
+                else:
+                    set slot 22 of player's current inventory to shiny {@RWM.VIP.item} named {@RWM.Monthly.VIP.name} with lore "&7Economy Reward: ${@RWM.Monthly.VIP}"
+            else:
+                set slot 22 of player's current inventory to shiny {@RWM.VIP.item} named {@RWM.Monthly.VIP.name} with lore "&7Economy Reward: ${@RWM.Monthly.VIP}"
+            
+            if {RWM.Monthly.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.MVP}:
+                    set slot 31 of player's current inventory to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebackin.Monthly}"
+                else:
+                    set slot 31 of player's current inventory to shiny {@RWM.MVP.item} named {@RWM.Monthly.MVP+.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP}"
+            else:
+                set slot 31 of player's current inventory to shiny {@RWM.MVP.item} named {@RWM.Monthly.MVP+.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP}"
+                
+            if {RWM.Monthly.expire::%event-player%} > unix time:
+                if event-player have permission {@RWM.MVP+}:
+                    set slot 40 of player's current inventory to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebackin.Monthly}"
+                else:
+                    set slot 40 of player's current inventory to shiny {@RWM.MVP+.item} named {@RWM.Monthly.MVP+.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP+}"
+            else:
+                set slot 40 of player's current inventory to shiny {@RWM.MVP+.item} named {@RWM.Monthly.MVP+.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP+}"
+            
+            #====================#
+            #Vote
+            #====================#
+            set slot 15 of player's current inventory to {@RWM.Vote.A.item} named {@RWM.Vote.A} with lore {@RWM.Vote.A.link}
+            set slot 24 of player's current inventory to {@RWM.Vote.B.item} named {@RWM.Vote.B} with lore {@RWM.Vote.B.link}
+            set slot 33 of player's current inventory to {@RWM.Vote.C.item} named {@RWM.Vote.C} with lore {@RWM.Vote.C.link}
+            set slot 42 of player's current inventory to {@RWM.Vote.D.item} named {@RWM.Vote.D} with lore {@RWM.Vote.D.link}
+            
+#====================#
+#NPC right click GUI
+#====================#
+on npc right click:
+    while inventory name of player's current inventory is {@RWM.NPC.name}:
+        loop all items in event-player's current inventory:
+            if name of loop-item is {@RWM.Daily.claimed}:
+                if {RWM.Daily.expire::%event-player%} is set:
+                    set {_RWM.daily} to {RWM.Daily.expire::%event-player%} - unix time
+                    if {_RWM.daily} > 0:
+                        set {_h.d} to rounded down ({_RWM.daily} / 3600)
+                        set {_m.d} to rounded down (({_RWM.daily} / 60) mod 60)
+                        set {_s.d} to rounded ({_RWM.daily} mod 60)
+                        set {_lore.d} to {@RWM.countdown.Daily}
+                        set loop-item to {@RWM.claimed.item} named {@RWM.Daily.claimed} with lore "{@RWM.comebackin.Daily}"
+                    else:
+                        if event-player doesn't have permission {@RWM.VIP} or {@RWM.MVP} or {@RWM.MVP+}:
+                            set loop-item to {@RWM.Default.item} named {@RWM.Daily.Default.name} with lore "&7Economy Reward: ${@RWM.Daily.Default}"
+                        if event-player has permission {@RWM.VIP}:
+                            set loop-item to {@RWM.VIP.item} named {@RWM.Daily.VIP.name} with lore "&7Economy Reward: ${@RWM.Daily.VIP}"
+                        if event-player has permission {@RWM.MVP}:
+                            set loop-item to {@RWM.MVP.item} named {@RWM.Daily.MVP.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP}"
+                        if event-player has permission {@RWM.MVP+}:
+                            set loop-item to {@RWM.MVP+.item} named {@RWM.Daily.MVP+.name} with lore "&7Economy Reward: ${@RWM.Daily.MVP+}"
+            if name of loop-item is {@RWM.Monthly.claimed}:
+                if {RWM.Monthly.expire::%event-player%} is set:
+                    set {_RWM.monthly} to {RWM.Monthly.expire::%event-player%} - unix time
+                    if {_RWM.monthly} > 0:
+                        set {_d.m} to rounded down ({_RWM.monthly} / 86400)
+                        set {_h.m} to rounded down (({_RWM.monthly} mod 86400) / 3600)
+                        set {_m.m} to rounded down (({_RWM.monthly} / 60) mod 60)
+                        set {_s.m} to rounded ({_RWM.monthly} mod 60)
+                        set {_lore.m} to {@RWM.countdown.Monthly}
+                        set loop-item to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebackin.Monthly}"
+                    else:
+                        if event-player doesn't have permission {@RWM.VIP} or {@RWM.MVP} or {@RWM.MVP+}:
+                            set loop-item to shiny {@RWM.Default.item} named {@RWM.Monthly.Default.name} with lore "&7Economy Reward: ${@RWM.Monthly.Default}"
+                        if event-player has permission {@RWM.VIP}:
+                            set loop-item to shiny {@RWM.VIP.item} named {@RWM.Monthly.VIP.name} with lore "&7Economy Reward: ${@RWM.Monthly.VIP}"
+                        if event-player has permission {@RWM.MVP}:
+                            set loop-item to shiny {@RWM.MVP.item} named {@RWM.Monthly.MVP.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP}"
+                        if event-player has permission {@RWM.MVP+}:
+                            set loop-item to shiny {@RWM.MVP+.item} named {@RWM.Monthly.MVP+.name} with lore "&7Economy Reward: ${@RWM.Monthly.MVP+}"
+        wait 1 tick
+            
+            
+#====================#
+#Inventory interact event
+#====================#
+on inventory click:
+    if inventory name of player's current inventory is {@RWM.NPC.name}:
+        cancel event
+        if name of clicked item is {@RWM.Daily.claimed} or {@RWM.Monthly.claimed}:
+            play {@RWM.invalid.sound} specifically to player with pitch {@RWM.invalid.sound.pitch} and volume {@RWM.invalid.sound.vol}
+        if name of clicked item is {@RWM.Daily.Default.name} or {@RWM.Daily.VIP.name} or {@RWM.Daily.MVP.name} or {@RWM.Daily.MVP+.name} or {@RWM.Monthly.Default.name} or {@RWM.Monthly.VIP.name} or {@RWM.Monthly.MVP.name} or {@RWM.Monthly.MVP+.name}:
+            #==========#
+            #Default Rank
+            #==========#
+            if name of clicked item is {@RWM.Daily.Default.name} or {@RWM.Monthly.Default.name}:
+                if event-player doesn't have permission {@RWM.VIP} or {@RWM.MVP} or {@RWM.MVP+}:
+                    #Daily Reward
+                    if name of clicked item is {@RWM.Daily.Default.name}:
+                        set {RWM.Daily.expire::%event-player%} to unix time + 86400
+                        message {@RWM.claimed.Daily.Default}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Daily.claimed} with lore "{@RWM.comebacklater}"
+                        add 50 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                    #Monthly Reward
+                    if name of clicked item is {@RWM.Monthly.Default.name}:
+                        set {RWM.Monthly.expire::%event-player%} to unix time + 2592000
+                        add 30 days to {RWM.expire::%event-player%}
+                        message {@RWM.claimed.Monthly.Default}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Monthly.claimed} with lore "{@RWM.comebacklater}"
+                        add 500 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                else:
+                    message {@RWM.notDefaultRank}
+                    play {@RWM.noperm.sound} specifically to player with pitch {@RWM.noperm.sound.pitch} and volume {@RWM.noperm.sound.vol}
+            #==========#
+            #VIP Rank
+            #==========#
+            if name of clicked item is {@RWM.Daily.VIP.name} or {@RWM.Monthly.VIP.name}:
+                if event-player has permission {@RWM.VIP}:
+                    #Daily Reward
+                    if name of clicked item is {@RWM.Daily.VIP.name}:
+                        set {RWM.Daily.expire::%event-player%} to unix time + 86400
+                        message {@RWM.claimed.Daily.VIP}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Daily.claimed} with lore "{@RWM.comebacklater}"
+                        add 100 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                    #Monthly Reward
+                    if name of clicked item is {@RWM.Monthly.VIP.name}:
+                        set {RWM.Monthly.expire::%event-player%} to unix time + 2592000
+                        add 30 days to {RWM.expire::%event-player%}
+                        message {@RWM.claimed.Monthly.VIP}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Monthly.claimed} with lore "{@RWM.comebacklater}"
+                        add 1000 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                else:
+                    message {@RWM.purchase.VIP}
+                    play {@RWM.noperm.sound} specifically to player with pitch {@RWM.noperm.sound.pitch} and volume {@RWM.noperm.sound.vol}
+            #==========#
+            #MVP Rank
+            #==========#
+            if name of clicked item is {@RWM.Daily.MVP.name} or {@RWM.Monthly.MVP.name}:
+                if event-player has permission {@RWM.MVP}:
+                    #Daily Reward
+                    if name of clicked item is {@RWM.Daily.MVP.name}:
+                        set {RWM.Daily.expire::%event-player%} to unix time + 86400
+                        message {@RWM.claimed.Daily.MVP}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Daily.claimed} with lore "{@RWM.comebacklater}"
+                        add 250 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                    #Monthly Reward
+                    if name of clicked item is {@RWM.Monthly.MVP.name}:
+                        set {RWM.Monthly.expire::%event-player%} to unix time + 2592000
+                        add 30 days to {RWM.expire::%event-player%}
+                        message {@RWM.claimed.Monthly.MVP}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Monthly.claimed} with lore "{@RWM.comebacklater}"
+                        add 2500 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                else:
+                    message {@RWM.purchase.MVP}
+                    play {@RWM.noperm.sound} specifically to player with pitch {@RWM.noperm.sound.pitch} and volume {@RWM.noperm.sound.vol}
+            #==========#
+            #MVP+ Rank
+            #==========#
+            if name of clicked item is {@RWM.Daily.MVP+.name} or {@RWM.Monthly.MVP+.name}:
+                if event-player has permission {@RWM.MVP+}:
+                    #Daily Reward
+                    if name of clicked item is {@RWM.Daily.MVP+.name}:
+                        set {RWM.Daily.expire::%event-player%} to unix time + 86400
+                        message {@RWM.claimed.Daily.MVP+}
+                        set slot clicked slot of player's current inventory to ender pearl named {@RWM.Daily.claimed} with lore "{@RWM.comebacklater}"
+                        add 500 to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                    #Monthly Reward
+                    if name of clicked item is {@RWM.Monthly.MVP+.name}:
+                        set {RWM.Monthly.expire::%event-player%} to unix time + 2592000
+                        add 30 days to {RWM.expire::%event-player%}
+                        message {@RWM.claimed.Monthly.MVP+}
+                        set slot clicked slot of player's current inventory to {@RWM.claimed.item} named {@RWM.Monthly.claimed} with lore "{@RWM.comebacklater}"
+                        add {@RWM.Monthly.MVP+} to balance of player
+                        play {@RWM.claimed.sound} specifically to player with pitch {@RWM.claimed.sound.pitch} and volume {@RWM.claimed.sound.vol}
+                else:
+                    message {@RWM.purchase.MVP+}
+                    play {@RWM.noperm.sound} specifically to player with pitch {@RWM.noperm.sound.pitch} and volume {@RWM.noperm.sound.vol}
+        
+                    
+        if name of clicked item is {@RWM.Vote.A}:
+            close event-player's inventory
+            play {@RWM.voteclick.sound} specifically to player with pitch {@RWM.voteclick.sound.pitch} and volume {@RWM.voteclick.sound.vol}
+            message {@RWM.Vote.message}
+            message {@RWM.Vote.A.link}
+        if name of clicked item is {@RWM.Vote.B}:
+            close event-player's inventory
+            play {@RWM.voteclick.sound} specifically to player with pitch {@RWM.voteclick.sound.pitch} and volume {@RWM.voteclick.sound.vol}
+            message {@RWM.Vote.message}
+            message {@RWM.Vote.B.link}
+        if name of clicked item is {@RWM.Vote.C}:
+            close event-player's inventory
+            play {@RWM.voteclick.sound} specifically to player with pitch {@RWM.voteclick.sound.pitch} and volume {@RWM.voteclick.sound.vol}
+            message {@RWM.Vote.message}
+            message {@RWM.Vote.C.link}
+        if name of clicked item is {@RWM.Vote.D}:
+            close event-player's inventory
+            play {@RWM.voteclick.sound} specifically to player with pitch {@RWM.voteclick.sound.pitch} and volume {@RWM.voteclick.sound.vol}
+            message {@RWM.Vote.message}
+            message {@RWM.Vote.D.link}
+
+on vote:
+    if player is online:
+        message {@RWM.voted.msg}
+        message {@RWM.voted.msg2}
+        message "{@RWM.voted.reward}"
+        add {@RWM.voted.reward} to balance of player
+        play {@RWM.voted.sound} specifically to player with pitch {@RWM.voted.sound.pitch} and volume {@RWM.voted.sound.vol}
